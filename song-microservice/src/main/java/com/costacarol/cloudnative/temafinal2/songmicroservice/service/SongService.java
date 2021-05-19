@@ -12,7 +12,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class SongService {
 
-    private SongRepository songRepository;
+    private final SongRepository songRepository;
 
     public Object addNewSong (String title, String singer) {
         AddSongCommand addSongCommand = new AddSongCommand(title, singer, songRepository);
