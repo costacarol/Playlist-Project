@@ -8,7 +8,7 @@ import com.netflix.hystrix.HystrixCommandGroupKey;
 import java.util.Optional;
 
 
-public final class AddSongCommand extends HystrixCommand<Object> {
+public class AddSongCommand extends HystrixCommand<Object> {
 
     private final SongRepository songRepository;
     private final String title;

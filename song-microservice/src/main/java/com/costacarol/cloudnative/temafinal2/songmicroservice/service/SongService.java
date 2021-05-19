@@ -1,12 +1,12 @@
 package com.costacarol.cloudnative.temafinal2.songmicroservice.service;
 
-import com.costacarol.cloudnative.temafinal2.songmicroservice.hystrix.*;
+import com.costacarol.cloudnative.temafinal2.songmicroservice.hystrix.AddSongCommand;
+import com.costacarol.cloudnative.temafinal2.songmicroservice.hystrix.DeleteSongCommand;
+import com.costacarol.cloudnative.temafinal2.songmicroservice.hystrix.ReadSongCommand;
+import com.costacarol.cloudnative.temafinal2.songmicroservice.hystrix.UpdateSongCommand;
 import com.costacarol.cloudnative.temafinal2.songmicroservice.repository.SongRepository;
-import com.costacarol.cloudnative.temafinal2.songmicroservice.model.Songs;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor

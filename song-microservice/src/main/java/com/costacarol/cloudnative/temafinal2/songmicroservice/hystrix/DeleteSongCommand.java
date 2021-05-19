@@ -4,8 +4,6 @@ import com.costacarol.cloudnative.temafinal2.songmicroservice.repository.SongRep
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 
-import java.util.Optional;
-
 
 public class DeleteSongCommand extends HystrixCommand<Boolean>{
 
