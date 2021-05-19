@@ -7,11 +7,11 @@ import com.netflix.hystrix.HystrixCommandGroupKey;
 
 import java.util.Optional;
 
-public class UpdateSongCommand extends HystrixCommand<Optional> {
+public class UpdateSongCommand extends HystrixCommand<Object> {
 
-    private SongRepository songRepository;
-    private String title;
-    private Integer id;
+    private final SongRepository songRepository;
+    private final String title;
+    private final Integer id;
 
     public UpdateSongCommand(String title, Integer id, SongRepository songRepository) {
         super (HystrixCommandGroupKey.Factory.asKey( "AddSong" ));
@@ -21,7 +21,7 @@ public class UpdateSongCommand extends HystrixCommand<Optional> {
     }
 
     @Override
-    protected Optional run() throws Exception {
+    protected Object run() throws Exception {
         Optional<Songs> songOptional = songRepository.findById(id);
         if(songOptional.isPresent()){
             songOptional.get().setTitle(title);
@@ -31,7 +31,7 @@ public class UpdateSongCommand extends HystrixCommand<Optional> {
     }
 
     @Override
-    protected Optional getFallback () {
+    protected Object getFallback () {
         return Optional.empty();
     }
 }

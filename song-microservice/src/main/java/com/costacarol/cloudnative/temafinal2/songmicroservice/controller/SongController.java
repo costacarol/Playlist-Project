@@ -7,36 +7,36 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping(path = "/song")
 public class SongController {
 
-    private SongService songService;
+    private final SongService songService;
 
 
-    @PostMapping(path="/add/{title}")
-    public ResponseEntity addNewSong (@PathVariable ("title") String title,
-                                                @PathVariable ("String singer") String singer) {
-        songService.addNewSong(title, singer);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @PostMapping(path="/{title}")
+    public ResponseEntity<Object> addNewSong (@PathVariable ("title") String title,
+                                              @PathVariable ("String singer") String singer) {
+        return new ResponseEntity<>(songService.addNewSong(title, singer), HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/delete/{id}")
-    public ResponseEntity deleteSong (@PathVariable ("id") Integer id){
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Object> deleteSong (@PathVariable ("id") Integer id){
         songService.deleteSong(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping(path = "/edit/{id}/{newTitle}")
-    public ResponseEntity editSongTitle (@PathVariable ("id") Integer id,
-                                         @PathVariable ("newTitle") String newTitle){
-        songService.editSongTitle(id, newTitle);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @PutMapping(path = "/{id}/{newTitle}")
+    public ResponseEntity<Object> editSongTitle (@PathVariable ("id") Integer id,
+                                                 @PathVariable ("newTitle") String newTitle){
+        return new ResponseEntity<>(songService.editSongTitle(id, newTitle), HttpStatus.OK);
     }
 
     @GetMapping(path = "/detail/{idSong}")
-    public ResponseEntity<Songs> listSong(@PathVariable("idSong") Integer idSong){
-        return new ResponseEntity<>(songService.listSong(idSong).get(), HttpStatus.OK);
+    public ResponseEntity<Object> listSong(@PathVariable("idSong") Integer idSong){
+        return new ResponseEntity<>(songService.listSong(idSong), HttpStatus.OK);
     }
 }

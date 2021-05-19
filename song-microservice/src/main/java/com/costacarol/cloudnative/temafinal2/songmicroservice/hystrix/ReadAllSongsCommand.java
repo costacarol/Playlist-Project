@@ -9,7 +9,7 @@ import java.util.Collections;
 
 public class ReadAllSongsCommand extends HystrixCommand<Iterable<Songs>> {
 
-    private SongRepository songRepository;
+    private final SongRepository songRepository;
 
     public ReadAllSongsCommand(SongRepository songRepository) {
         super (HystrixCommandGroupKey.Factory.asKey( "ReadAllSongs" ));

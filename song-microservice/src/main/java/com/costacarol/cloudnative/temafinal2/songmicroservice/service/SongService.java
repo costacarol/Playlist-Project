@@ -14,7 +14,7 @@ public class SongService {
 
     private SongRepository songRepository;
 
-    public Optional<Songs> addNewSong (String title, String singer) {
+    public Object addNewSong (String title, String singer) {
         AddSongCommand addSongCommand = new AddSongCommand(title, singer, songRepository);
         return addSongCommand.execute();
     }
@@ -24,12 +24,12 @@ public class SongService {
         deleteSong.execute();
     }
 
-    public void editSongTitle (Integer idSong, String newTitle){
+    public Object editSongTitle (Integer idSong, String newTitle){
         UpdateSongCommand updateSong = new UpdateSongCommand(newTitle, idSong, songRepository);
-        updateSong.execute();
+        return updateSong.execute();
     }
 
-    public Optional<Songs> listSong(Integer idSong){
+    public Object listSong(Integer idSong){
         ReadSongCommand readSong = new ReadSongCommand(idSong, songRepository);
         return readSong.execute();
     }

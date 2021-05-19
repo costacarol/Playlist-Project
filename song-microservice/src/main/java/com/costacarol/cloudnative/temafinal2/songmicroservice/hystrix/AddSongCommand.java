@@ -8,11 +8,11 @@ import com.netflix.hystrix.HystrixCommandGroupKey;
 import java.util.Optional;
 
 
-public class AddSongCommand extends HystrixCommand<Optional<Songs>> {
+public final class AddSongCommand extends HystrixCommand<Object> {
 
-    private SongRepository songRepository;
-    private String title;
-    private String singer;
+    private final SongRepository songRepository;
+    private final String title;
+    private final String singer;
 
     public AddSongCommand(String title, String singer, SongRepository songRepository) {
         super (HystrixCommandGroupKey.Factory.asKey( "AddSong" ));
@@ -22,14 +22,14 @@ public class AddSongCommand extends HystrixCommand<Optional<Songs>> {
     }
 
     @Override
-    protected Optional<Songs> run() throws Exception {
+    protected Object run() throws Exception {
         Songs song = new Songs(title, singer);
         songRepository.save(song);
-        return Optional.of(song);
+        return song;
     }
 
     @Override
-    protected Optional<Songs> getFallback () {
+    protected Object getFallback () {
         return Optional.empty();
     }
 

@@ -7,7 +7,7 @@ import com.netflix.hystrix.HystrixCommandGroupKey;
 import java.util.Optional;
 
 
-public class DeleteSongCommand extends HystrixCommand<Optional>{
+public class DeleteSongCommand extends HystrixCommand<Boolean>{
 
     private SongRepository songRepository;
     private Integer id;
@@ -19,14 +19,14 @@ public class DeleteSongCommand extends HystrixCommand<Optional>{
     }
 
     @Override
-    protected Optional run () {
+    protected Boolean run () {
         songRepository.deleteById(id);
-        return Optional.empty();
+        return true;
     }
 
     @Override
-    protected  Optional getFallback () {
-        return Optional.empty();
+    protected Boolean getFallback () {
+        return false;
     }
 }
 
