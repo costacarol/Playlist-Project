@@ -22,8 +22,8 @@ public class EurekaSendHeartBeat implements Runnable {
 
         while (true) {
             try {
-//                send.sendHeartBeatSongOne();
-//                send.sendHeartBeatSongTwo();
+                send.sendHeartBeatSongOne();
+                send.sendHeartBeatSongTwo();
                 Thread.sleep(30000);
                 log.info("Send HeartBeat: service is UP!");
             } catch (Exception e) {
